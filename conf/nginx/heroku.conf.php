@@ -57,11 +57,18 @@ http {
         error_log stderr debug;
         access_log /tmp/heroku.nginx_access.<?=getenv('PORT')?:'8080'?>.log;
         
-        include "<?=getenv('HEROKU_PHP_NGINX_CONFIG_INCLUDE')?>";
+        #include "<?=getenv('HEROKU_PHP_NGINX_CONFIG_INCLUDE')?>";
+        
+        location /.well-known/acme-challenge/ {
+            default_type "text/plain";
+            add_header X-Charbon LocationRuleXX;
+            alias '/app/public.built/letsencrypt/';
+            break;
+        }
         
         location /well-known/acme-challenge/ {
             default_type "text/plain";
-            add_header X-Charbon LocationRuleD;
+            add_header X-Charbon LocationRuleXY;
             alias '/app/public.built/letsencrypt/';
             break;
         }
