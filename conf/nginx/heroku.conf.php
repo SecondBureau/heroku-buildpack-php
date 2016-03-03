@@ -60,9 +60,9 @@ http {
         include "<?=getenv('HEROKU_PHP_NGINX_CONFIG_INCLUDE')?>";
         
         # restrict access to hidden files, just in case
-        location ~ /\. {
-            deny all;
-        }
+        #location ~ /\. {
+        #    deny all;
+        #}
         
         # default handling of .php
         location ~ \.php {
